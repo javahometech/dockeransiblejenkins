@@ -11,6 +11,8 @@
         - "sudo dnf install docker-ce --nobest -y"
         - "sudo systemctl enable docker"
         - "sudo systemctl start docker"
+        - "sudo dnf install python3-pip -y"
+        - "pip3 install docker-py"
     - 
       docker_container: 
         image: "sahilthakre123/sampleapp:{{DOCKER_TAG}}"
