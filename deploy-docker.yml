@@ -2,6 +2,11 @@
 - hosts: dev
   become: True
   tasks:
+    - name: Enable EPEL Repository on CentOS 8
+      dnf:
+        name: epel-release
+        state: latest
+        become: True
     - name: Install python pip
       yum:
         name: python-pip
