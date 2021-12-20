@@ -14,7 +14,7 @@ pipeline{
         }
         post {
             always {
-                jiraSendBuildInfo site: '<sitename>.atlassian.net'
+                jiraSendBuildInfo site: 'testing-devops123.atlassian.net'
             }
        }
         
