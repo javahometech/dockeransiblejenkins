@@ -11,12 +11,13 @@ pipeline{
             steps{
                git 'https://github.com/testdevops11/dockeransiblejenkins.git'
             }
-        }
-        post {
+            post {
             always {
                 jiraSendBuildInfo site: 'testing-devops123.atlassian.net'
+                }
             }
-       }
+        }
+        
         
         stage('Maven Build'){
             steps{
