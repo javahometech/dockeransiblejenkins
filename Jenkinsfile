@@ -9,8 +9,7 @@ pipeline{
     stages{
         stage('SCM'){
             steps{
-                git credentialsId: 'github', 
-                    url: 'https://github.com/javahometech/dockeransiblejenkins'
+               git 'https://github.com/testdevops11/dockeransiblejenkins.git'
             }
         }
         
@@ -22,29 +21,28 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t kammana/hariapp:${DOCKER_TAG} "
+                sh " docker build . -t sahilthakre123/sampleapp:${DOCKER_TAG} "
             }
         }
-        
-        stage('DockerHub Push'){
+        stage('Docker push dockerhub'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u kammana -p ${dockerHubPwd}"
+                withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHUBPwd')]) {
+                    sh "docker login -u sahilthakre123 -p ${dockerHubPwd}"
                 }
-                
-                sh "docker push kammana/hariapp:${DOCKER_TAG} "
+                sh "docker push sahilthakre123/sampleapp:${DOCKER_TAG}"
             }
         }
-        
-        stage('Docker Deploy'){
+        stage('Ansible deployement to slaves'){
             steps{
-              ansiblePlaybook credentialsId: 'dev-server', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
+                ansiblePlaybook become: true, credentialsId: 'ssh-12', disableHostKeyChecking: true, extras: '-e DOCKER_TAG=$DOCKER_TAG', installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
             }
         }
     }
 }
 
+ 
+
 def getVersion(){
-    def commitHash = sh label: '', returnStdout: true, script: 'git rev-parse --short HEAD'
+    def commitHash = sh returnStdout: true, script: 'git rev-parse --short HEAD'
     return commitHash
 }
