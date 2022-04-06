@@ -25,4 +25,4 @@
         image: "vinayjadhav/hariapp:0.0.1"
         state: started
         published_ports:
-          - 0.0.0.0:8080:8080
+          - 0.0.0.0:8083:8080
