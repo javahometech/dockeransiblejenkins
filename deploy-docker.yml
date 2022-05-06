@@ -1,25 +1,37 @@
 ---
 - hosts: dev
-  become: True
+
   tasks:
-    - name: Install python pip
-      yum:
-        name: python-pip
-        state: present
-    - name: Install docker
-      yum:
+    - name: Docker repo
+      yum_repository:
         name: docker
+        description: repo for docker
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+        gpgcheck: no
+- name: Installing docker
+      command:
+        cmd: yum install docker-ce --nobest -y
+- name: install python3.6
+      package:
+        name: python36
         state: present
-    - name: start docker
+- name: Starting and enabling docker service
       service:
         name: docker
         state: started
         enabled: yes
-    - name: Install docker-py python module
+- name: conf pip for docker
       pip:
         name: docker-py
-        state: present
-    - name: Start the container
+- name: Pull httpd docker iso
+      docker_image:
+        name: httpd
+        source: pull
+- name: git
+      git:
+        repo: GITHUB_REPO
+        clone: yes
+        dest: /var/www/html
       docker_container:
         name: hariapp
         image: "kammana/hariapp:{{DOCKER_TAG}}"
