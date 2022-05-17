@@ -4,7 +4,7 @@
   <groupId>in.javahome</groupId>
   <artifactId>dockeransible</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>3.0-SNAPSHOT</version>
   <name>dockeransible Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
