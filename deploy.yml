@@ -1,0 +1,8 @@
+---
+- name: deploy war
+  hosts: 172.31.41.175
+  become: yes
+  tasks:
+      copy:
+        src: /var/lib/jenkins/workspace/Ansible-Docker/target/dockeransible.war
+        dest: /usr/local/tomcat/webapps
