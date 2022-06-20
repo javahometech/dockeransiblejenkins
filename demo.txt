@@ -1,0 +1,3 @@
+poll scm :
+
+whenever you commits changes in scm, poll scm pulls code and run according to your syntax 
