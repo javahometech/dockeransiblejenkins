@@ -2,19 +2,6 @@
 - hosts: dev
   become: True
   tasks:
-    - name: Install python pip
-      yum:
-        name: python-pip
-        state: present
-    - name: Install docker
-      yum:
-        name: docker
-        state: present
-    - name: start docker
-      service:
-        name: docker
-        state: started
-        enabled: yes
     - name: Start the container
       docker_container:
         name: sunilapp
