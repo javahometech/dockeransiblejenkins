@@ -2,18 +2,15 @@
 - hosts: dev
   become: True
   tasks:
-    - name: Install python pip
-      yum:
-        name: python-pip
-        state: present
-    - name: Install docker-py python module
-      pip:
-        name: docker-py
-        state: present
-    - name: Start the container
-      docker_container:
-        name: sunilapp 
-        image: "sunilvasu/sunilapp:{{DOCKER_TAG}}"
-        state: started
-        published_ports:
-          - 0.0.0.0:8080:8080
+    - name: Pull docker image
+      shell:
+        cmd: docker pull sunilvasu/sunilapp:{{DOCKER_TAG}}
+    - name: Tag docker image
+      shell:
+        cmd: docker tag sunilvasu/sunilapp:{{DOCKER_TAG}} sunilvasu/sunilapp:latest
+    - name: Stop exisitng docker container
+      shell:
+        cmd: docker rm sunilapp
+    - name: Start docker container
+      shell:
+        cmd: docker run -it -d --name sunilapp -p 8081:8080 sunilvasu/sunilapp:latest
