@@ -2,7 +2,7 @@ FROM centos:7
 
 # Install prerequisites
 #RUN apt-get -y update && apt-get -y upgrade
-RUN yum install curl java-1.8.0-openjdk wget
+RUN yum -y install curl java-1.8.0-openjdk wget
 RUN mkdir /usr/local/tomcat
 RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.0.20/bin/apache-tomcat-10.0.20.tar.gz -O /tmp/tomcat.tar.gz
 RUN cd /tmp && tar xvfz tomcat.tar.gz
