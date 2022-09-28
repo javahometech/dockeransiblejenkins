@@ -15,8 +15,8 @@ EXPOSE 8080
 # Define default command.
 CMD ["bash"]
 
-
 WORKDIR /usr/local/tomcat/webapps
-RUN curl -O -L https://github.com/bhaskarndas/sample-war/raw/main/sampletest.war
 
-CMD ["https://net.cloudinfrastructureservices.co.uk/usr/local/tomcat/bin/catalina.sh", "run"]
+COPY target/*.war /usr/local/tomcat/webapps/dockeransible.war
+
+CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
