@@ -19,7 +19,7 @@
       pip:
         name: docker-py
         state: present
-         - name: Start the container
+    - name: Start the container
       docker_container:
         name: first-app
         image: "quophi11/first-app:latest"
