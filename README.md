@@ -27,7 +27,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7<br>
 
 Docker version 1.13.1 From "extras"<br>
 
-Enable Repositories<br>
+Enabled Repositories<br>
 base/7/x86_64                                               CentOS-7 - Base                               <br>
 epel/x86_64                                                 Extra Packages for Enterprise Linux 7 - x86_64<br>
 extras/7/x86_64                                             CentOS-7 - Extras                             <br>
