@@ -10,6 +10,10 @@
         cmd: docker tag sunilvasu/sunilapp:{{DOCKER_TAG}} sunilvasu/sunilapp:latest
     - name: Stop exisitng docker container
       shell:
+        cmd: docker stop sunilapp
+      ignore_errors: yes
+    - name: Remove exisitng docker container
+      shell:
         cmd: docker rm sunilapp
       ignore_errors: yes
     - name: Start docker container
