@@ -1,15 +1,3 @@
 FROM tomcat:7
 # Take the war and copy to webapps of tomcat
 COPY target/*.war /usr/local/tomcat/webapps/dockeransible.war
-
-EXPOSE 8080
-# java
-#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV CATALINA_HOME=/usr/local/tomcat
-
-# Define default command.
-CMD ["bash"]
-
-WORKDIR /usr/local/tomcat/webapps
-
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
