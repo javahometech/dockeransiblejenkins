@@ -11,6 +11,7 @@
     - name: Stop exisitng docker container
       shell:
         cmd: docker rm sunilapp
+      ignore_errors: yes
     - name: Start docker container
       shell:
         cmd: docker run -it -d --name sunilapp -p 8081:8080 sunilvasu/sunilapp:latest
