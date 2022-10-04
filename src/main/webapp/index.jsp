@@ -1,4 +1,4 @@
-<!GAP COMPUTER SYSTEM html>
+!DOCTYPE html> html>
 <html>
 <head>
 <title>Page Title</title>
