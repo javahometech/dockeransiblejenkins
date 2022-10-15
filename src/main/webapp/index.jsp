@@ -1,5 +1,12 @@
+!DOCTYPE html> html>
 <html>
+<head>
+<title>Page Title</title>
+</head>
 <body>
-<h2 stype="colour: red">Deployed using Jenkins, Ansible!! -2</h2>
+
+<h1>My First JENKINS ANSISBLE PIPELINE </h1>
+<p>My first paragraph.</p>
+
 </body>
 </html>
