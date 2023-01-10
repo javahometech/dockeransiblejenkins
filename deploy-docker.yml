@@ -2,6 +2,7 @@
 - hosts: devops
   become: yes
   connection: ssh
+  user: ansible
   tasks:
     - name: Start the container
       docker_container:
