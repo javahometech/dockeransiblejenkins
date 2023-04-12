@@ -22,17 +22,17 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t pradnyeo/hariapp:${DOCKER_TAG} "
+                sh "sudo docker build . -t pradnyeo/hariapp:${DOCKER_TAG} "
             }
         }
         
         stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u pradnyeo -p ${dockerHubPwd}"
+                    sh "sudo docker login -u pradnyeo -p ${dockerHubPwd}"
                 }
                 
-                sh "docker push pradnyeo/hariapp:${DOCKER_TAG} "
+                sh "sudo docker push pradnyeo/hariapp:${DOCKER_TAG} "
             }
         }
         
