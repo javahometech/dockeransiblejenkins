@@ -28,8 +28,9 @@ pipeline{
         
         stage('DockerHub Push'){
             steps{
+                
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "sudo docker login -u pradnyeo -p ${dockerHubPwd}"
+                       sh "sudo docker login -u pradnyeo -p ${dockerHubPwd}"
                 }
                 
                 sh "sudo docker push pradnyeo/hariapp:${DOCKER_TAG} "
