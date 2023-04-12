@@ -1,13 +1,13 @@
 ---
-- hosts: devops
+- hosts: demo
   become: yes
   connection: ssh
-  user: ansible
+  user: pradnyesh
   tasks:
     - name: Start the container
       docker_container:
-        name: tommy
-        image: "pradnyeo/tommy:1.0"
+        name: hariapp
+        image: "pradnyeo/hariapp:{{DOCKER_TAG}}"
         state: started
         published_ports:
           - 0.0.0.0:8090:8080
