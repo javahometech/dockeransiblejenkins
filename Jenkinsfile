@@ -21,7 +21,7 @@ pipeline{
         }
         stage('DeployToContainer'){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'pradnyesh', path: '', url: 'http://3.109.211.207:8080/')], contextPath: null, war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'pradnyesh', path: '', url: 'http://13.233.42.109:8080/')], contextPath: null, war: '**/*.war'
             }
         }
         stage('Docker Build'){
