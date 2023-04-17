@@ -40,7 +40,7 @@ pipeline{
                     file: '/mnt/jenkins-slave/workspace/Project-2/target/dockeransible.war', 
                     type: 'war']], 
                     credentialsId: 'nexus', 
-                    groupId: 'WebApp', 
+                    groupId: 'dockeransible', 
                     nexusUrl: '15.206.124.160:8081/', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
