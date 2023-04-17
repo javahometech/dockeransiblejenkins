@@ -31,7 +31,23 @@ pipeline{
                 sh "sudo docker build . -t pradnyeo/hariapp:${DOCKER_TAG} "
             }
         }
-        
+        stage ('DeployToNexusArtifact') {
+            steps {
+                //Deploy to Nexus Repo
+                nexusArtifactUploader artifacts: [
+                    [artifactId: 'dockeransible', 
+                    classifier: '', 
+                    file: '/mnt/jenkins-slave/workspace/Project-2/target/dockeransible.war', 
+                    type: 'war']], 
+                    credentialsId: 'nexus', 
+                    groupId: 'WebApp', 
+                    nexusUrl: '15.206.124.160:8081/', 
+                    nexusVersion: 'nexus3', 
+                    protocol: 'http', 
+                    repository: 'maven-deploy', 
+                    version: '1.0-SNAPSHOT'
+            }       
+        }
         stage('DockerHub Push'){
             steps{
                 
