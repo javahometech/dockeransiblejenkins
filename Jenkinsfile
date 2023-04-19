@@ -40,7 +40,7 @@ pipeline{
                 nexusArtifactUploader artifacts: [
                     [artifactId: 'dockeransible', 
                     classifier: '', 
-                    file: '/mnt/jenkins-slave/workspace/Project-2/target/dockeransible.war', 
+                    file: '/home/pradnyesh/.jenkins/workspace/Project-2/target/dockeransible.war', 
                     type: 'war']], 
                     credentialsId: 'nexus', 
                     groupId: 'dockeransible', 
