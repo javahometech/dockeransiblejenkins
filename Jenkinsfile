@@ -8,6 +8,7 @@ pipeline{
     environment {
       DOCKER_TAG = getVersion()
     }
+
     stages{
         stage('SCM'){
             steps{
@@ -15,22 +16,24 @@ pipeline{
                     url: 'https://github.com/pradnyeo/dockeransiblejenkins.git'
             }
         }
-        
+
+        //Build war file
+
         stage('Maven Build'){
             steps{
                 sh "mvn clean package"
             }
         }
+
+	//Deploy war file on Dev Server
         stage('DeployToContainer'){
             steps{
                 deploy adapters: [tomcat9(credentialsId: 'pradnyesh', path: '', url: 'http://3.110.223.22:8080/')], contextPath: null, war: '**/*.war'
             }
         }
-        stage('Docker Build'){
-            steps{
-                sh "sudo docker build . -t pradnyeo/hariapp:${DOCKER_TAG} "
-            }
-        }
+
+        // Deploy Artifact on Nexus
+
         stage ('DeployToNexusArtifact') {
             steps {
                 //Deploy to Nexus Repo
@@ -41,13 +44,24 @@ pipeline{
                     type: 'war']], 
                     credentialsId: 'nexus', 
                     groupId: 'dockeransible', 
-                    nexusUrl: '15.206.124.160:8081/', 
+                    nexusUrl: 'http://13.232.1.132:8081/', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
                     repository: 'maven-deploy', 
                     version: '1.0-SNAPSHOT'
             }       
         }
+
+       //Build an Docker Image
+	stage('Docker Build'){
+            steps{
+                sh "sudo docker build . -t pradnyeo/hariapp:${DOCKER_TAG} "
+            }
+        }
+
+
+      //Push docker image to DockerHub
+
         stage('DockerHub Push'){
             steps{
                 
@@ -59,13 +73,17 @@ pipeline{
             }
         }
         
-        stage('Docker Deploy'){
-            steps{
+
+
+     //Deployment using Ansible playbook
+
+    //    stage('Docker Deploy'){
+    //        steps{
              // ansiblePlaybook credentialsId: 'ansible-node', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
              // ansiblePlaybook credentialsId: 'ansible-node', extras: 'DOCKER_TAG', installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
             ansiblePlaybook credentialsId: 'ansible', extras: 'DOCKER_TAG', installation: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'
-            }
-        }
+      //      }
+      //  }
     }
 }
 
