@@ -38,17 +38,18 @@ pipeline{
             steps {
                 //Deploy to Nexus Repo
                 nexusArtifactUploader artifacts: [
-                    [artifactId: 'dockeransible', 
-                    classifier: '', 
-                    file: '/home/pradnyesh/.jenkins/workspace/Project-2/target/dockeransible.war', 
-                    type: 'war']], 
-                    credentialsId: 'nexus', 
-                    groupId: 'in.javahome', 
-                    nexusUrl: 'http://13.232.1.132:8081/', 
-                    nexusVersion: 'nexus3', 
-                    protocol: 'http', 
-                    repository: 'maven-snapshots', 
-                    version: '1.0-SNAPSHOT'
+			[artifactId: 'dockeransible', 
+			 classifier: '', 
+			 file: '/home/pradnyesh/.jenkins/workspace/Project-2/target/dockeransible.war', 
+			 type: 'war']
+		], 
+			credentialsId: 'nexus', 
+			groupId: 'in.javahome', 
+			nexusUrl: '13.232.1.132:8081/', 
+			nexusVersion: 'nexus3', 
+			protocol: 'http', 
+			repository: 'maven-snapshots', 
+			version: '1.0-SNAPSHOT'
             }       
         }
 
