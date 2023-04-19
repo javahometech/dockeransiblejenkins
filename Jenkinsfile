@@ -47,7 +47,7 @@ pipeline{
                     nexusUrl: 'http://13.232.1.132:8081/', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
-                    repository: 'http://13.232.1.132:8081/repository/maven-deploy/', 
+                    repository: 'maven-snapshots', 
                     version: '1.0-SNAPSHOT'
             }       
         }
