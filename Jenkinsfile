@@ -43,7 +43,7 @@ pipeline{
                     file: '/home/pradnyesh/.jenkins/workspace/Project-2/target/dockeransible.war', 
                     type: 'war']], 
                     credentialsId: 'nexus', 
-                    groupId: 'dockeransible', 
+                    groupId: 'in.javahome', 
                     nexusUrl: 'http://13.232.1.132:8081/', 
                     nexusVersion: 'nexus3', 
                     protocol: 'http', 
