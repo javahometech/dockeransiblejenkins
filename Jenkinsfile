@@ -37,7 +37,7 @@ pipeline{
         stage ('DeployToNexusArtifact') {
             steps {
                 //Deploy to Nexus Repo
-               nexusArtifactUploader credentialsId: 'nexus', groupId: 'in.javahome', nexusUrl: '13.233.7.12:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOTS'
+               nexusArtifactUploader artifacts: [[artifactId: 'dockeransible', classifier: '', file: '/mnt/jenkins-slave/workspace/Nexus_Project/target/dockeransible.war', type: 'war']], credentialsId: 'nexus', groupId: 'in.javahome', nexusUrl: '13.233.7.12:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT'
             }       
         }
 
