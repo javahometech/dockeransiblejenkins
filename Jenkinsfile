@@ -28,7 +28,7 @@ pipeline{
 	//Deploy war file on Dev Server
         stage('DeployToContainer'){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'pradnyesh', path: '', url: 'http://13.232.26.66:8080/')], contextPath: null, war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'pradnyesh', path: '', url: 'http://13.232.126.154/:8080/')], contextPath: null, war: '**/*.war'
             }
         }
 
@@ -45,7 +45,7 @@ pipeline{
 		], 
 			credentialsId: 'nexus', 
 			groupId: 'in.javahome', 
-			nexusUrl: '13.127.239.19:8081/', 
+			nexusUrl: '13.233.7.12:8081/', 
 			nexusVersion: 'nexus3', 
 			protocol: 'http', 
 			repository: 'maven-snapshots', 
